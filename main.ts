@@ -23,6 +23,7 @@ sprites.onDestroyed(SpriteKind.Player, function (sprite) {
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 100)
     info.changeScoreBy(1)
+    music.powerUp.play()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     dart = sprites.createProjectileFromSprite(img`
@@ -43,10 +44,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, spacePlane, 200, 0)
+    music.pewPew.play()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     spacePlane.destroy(effects.spray, 100)
     info.changeLifeBy(-1)
+    music.powerDown.play()
 })
 let bogey: Sprite = null
 let dart: Sprite = null
